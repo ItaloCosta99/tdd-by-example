@@ -33,17 +33,19 @@ public class Money implements Expression {
     return new Money(amount / bank.rate(this.currency, toCurrency), toCurrency);
   }
 
-  @Override
-  public String toString() {
-    return "Money [amount=" + amount + ", currency=" + currency + "]";
-  }
-
   public Money times(int multiplier) {
     return new Money(amount * multiplier, currency);
   }
 
-  public Expression plus(Money addend) {
+  @Override
+  public Expression plus(Expression addend) {
+    // TODO Auto-generated method stub
     return new Sum(this, addend);
+  }
+
+  @Override
+  public String toString() {
+    return "Money [amount=" + amount + ", currency=" + currency + "]";
   }
 
 }

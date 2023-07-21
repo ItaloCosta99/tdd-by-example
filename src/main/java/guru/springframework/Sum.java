@@ -14,4 +14,14 @@ public class Sum implements Expression {
     int amount = augmend.reduce(bank, toCurrency).amount + addmend.reduce(bank, toCurrency).amount;
     return new Money(amount, toCurrency);
   }
+
+  @Override
+  public Expression plus(Expression addend) {
+    return new Sum(this, addend);
+  }
+
+  @Override
+  public Expression times(int multiplier) {
+    return new Sum(augmend.times(multiplier), addmend.times(multiplier));
+  }
 }
